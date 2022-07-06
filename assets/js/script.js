@@ -1,3 +1,4 @@
+// Variables
 var APIKey = "166a433c57516f51dfab1f7edaed8413";
 var city = "";
 var currentDate = "";
@@ -35,7 +36,7 @@ $(document).ready(function() {
         searchCity(lastCity);
     }
 });
-
+// Search Button Functionality
 $("#search-btn").on("click", function() {
     event.preventDefault();
     clearDisplayWeatherInfo()
@@ -64,7 +65,7 @@ $(document).on("click", ".list-group-item", function() {
     resetGlobalVariables();
     searchCity(cityName);
 });
-
+// Display Weather Function
 function displayCurrentWeather() {
     var cardDiv = $("<div class='container border bg-light'>");
     var weatherImage = $("<img>").attr('src', currentWeatherIconUrl);
@@ -83,7 +84,7 @@ function displayCurrentWeather() {
         cardDiv.append(uvIndexEl);
         $("#current-weather-conditions").append(cardDiv);
 }
-
+// Todays Forecast Function
 function displayDayForeCast() { 
     var imgEl = $("<img>").attr("src", iconurl);  
     var cardEl = $("<div class='card'>").addClass("pl-1 bg-primary text-light");
@@ -105,7 +106,7 @@ function displayDayForeCast() {
     cardEl.append(cardBlockDiv);
     $(".card-deck").append(cardEl);
   }
-
+// Add card headers for 5 day forecast
   function addCardDeckHeader() {
     deckHeader = $("<h4>").text("5-Day Forecast").attr("id", "card-deck-title");
     deckHeader.addClass("pt-4 pt-2");
@@ -127,7 +128,7 @@ function displayDayForeCast() {
       $("#searched-cities-list").append(`<a href="#" class="list-group-item" style="text-decoration: none; color: black;"><li>${citiesList[i]}</li></a>`);
     }
   }
-
+// UV Index Colors
   function getColorCodeForUVIndex(uvIndex) {
     var uvIndexValue = parseFloat(uvIndex);
     var colorcode = "";
@@ -148,7 +149,7 @@ function displayDayForeCast() {
     }
     return colorcode;
 }
-
+// Reset function
 function resetGlobalVariables() {
     city = "";
     currentDate = "";
@@ -169,7 +170,7 @@ function resetGlobalVariables() {
     iconurl = "";
     country = "";
 }
-
+// Search Function
 function searchCity(cityName){
     console.log(cityName);
     var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + 
@@ -206,6 +207,7 @@ function searchCity(cityName){
           url: fiveDayQueryUrl,
           method: "GET"
         })
+        // 5 day forecast function
         .then(function(response) {
           var fiveDayForecast = response.list;
           addCardDeckHeader()
