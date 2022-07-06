@@ -1,3 +1,5 @@
+// Country List
+
 var isoCountries = {
     'AF' : 'Afghanistan',
     'AX' : 'Aland Islands',
@@ -246,6 +248,7 @@ var isoCountries = {
     'ZW' : 'Zimbabwe'
 };
 
+// Function to pull Country name by the Code
 function getCountryName (countryCode) {
     if (isoCountries.hasOwnProperty(countryCode)) {
         return isoCountries[countryCode];
